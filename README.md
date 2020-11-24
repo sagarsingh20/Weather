@@ -1,2 +1,2 @@
 # Weather
-Weather App, Places, Custom Pipe(tem change)
+Weather App, Places(Html and ts file outside), Custom Pipe(tem change)
