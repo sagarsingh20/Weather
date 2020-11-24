@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Near By Places</h3>
+                </div>
+                <div class="row card-body">
+                    <div *ngIf="item?.results.items[0]==null">
+                        <h4>No Data to display</h4>
+                    </div>
+                    <div class="col-sm-4">
+                        {{item?.results.items[0]?.title}}
+                    </div>
+                    <div class="col-sm-4">
+                        {{item?.results.items[1]?.title}}
+                    </div>
+                    <div class="col-sm-4">
+                        {{item?.results.items[2]?.title}}
+                    </div>
+                </div>
+                <div class="card-footer">
+                    Checking lat: {{iteml1}} long: {{iteml2}}
+                </div>
+            </div>
+        </div> 
+    </div>
+</div>
