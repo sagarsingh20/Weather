@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8">
+            <h3>Search for Weather</h3>
+            <form [formGroup]="weatherForm" >
+                <div class="form-group">
+                    <input class="form-control" type="text" placeholder="Enter the Location" formControlName="location">
+                </div>
+                <div class="form-group">
+                    <button type="submit"(click)="checkWeather(weatherForm.value)">Search</button>
+                </div>
+            </form>
+        </div>
+        <div  class="col-sm-8 currentLocation">
+            <h3>Weather of Current location</h3>
+            <div class="row">
+                <div class="card col-sm-12">
+                    <div class="card-header"><h5>{{report?.list[0].dt_txt | date:'EEEE'}}</h5></div>
+                    <div class=" row card-body">
+                        <div class="col-sm-4">
+                            <div *ngIf="report?.list[0].weather[0].description == 'broken clouds'">
+                                <img src="./assets/cdy.jpeg" style="width: 100px;">
+                            </div>
+                            <div *ngIf="report?.list[0].weather[0].description == 'scattered clouds'">
+                                <img src="./assets/cl.png" style="width: 100px">
+                            </div>
+                            <div *ngIf="report?.list[0].weather[0].description == 'clear sky'">
+                                <img src="./assets/su.png" style="width: 100px">
+                            </div>
+                            <div *ngIf="report?.list[0].weather[0].description == 'light rain'">
+                                <img src="./assets/rain.png" style="width: 100px">
+                            </div>
+                            <div *ngIf="report?.list[0].weather[0].description == 'few clouds'">
+                                <img src="./assets/par.png" style="width: 100px">
+                            </div>
+                            <div *ngIf="report?.list[0].weather[0].description == 'moderate rain'">
+                                <img src="./assets/ra.png" style="width: 100px">
+                            </div>
+                            <div *ngIf="report?.list[0].weather[0].description == 'overcast clouds'">
+                                <img src="./assets/sun.jpeg" style="width: 100px">
+                            </div>
+                            <h4>{{report?.list[0].weather[0].description}}</h4>
+                        </div>
+                        <div class="col-sm-4">
+                            <h2 style="font-size: 5rem">{{report?.list[0].main.temp | temperatureConverter }}<sup>o</sup></h2>
+                            <br>
+                            <h6>Feels Like {{report?.list[0].main.feels_like | temperatureConverter}}<sup>o</sup></h6>
+                        </div>
+                        <div class="col-sm-4">
+                            <small style="padding: 10px">{{report?.list[0].main.temp_min | temperatureConverter }}<sup>o</sup></small>
+                            <small>{{report?.list[0].main.temp_max | temperatureConverter }}<sup>o</sup></small><br>
+                            <h6 style="margin-top: 50px">Wind:{{report?.list[0].wind.speed}}km/hr </h6>
+                            <h6 style="padding: 05px">{{report?.list[0].main.humidity}}%</h6>
+                        </div>
+                    </div>
+                    <div class="row card-footer">
+                        <div class="bottom col-sm-4">
+                            <small style="padding: 10px">{{report?.list[8].dt_txt | date:'EEEE'}}</small>
+                            <small>{{report?.list[8].main.temp | temperatureConverter }}<sup>o</sup></small>
+                        </div> 
+                        <div class="bottom col-sm-4">
+                            <small style="padding: 10px">{{report?.list[16].dt_txt | date:'EEEE'}}</small>
+                            <small>{{report?.list[12].main.temp | temperatureConverter }}<sup>o</sup></small>
+                        </div> 
+                        <div class="bottom col-sm-4">
+                            <small style="padding: 10px">{{report?.list[24].dt_txt | date:'EEEE'}}</small>
+                            <small>{{report?.list[20].main.temp | temperatureConverter }}<sup>o</sup></small>
+                        </div>   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<app-places [iteml1]=lattitude [iteml2]="longitutde" [item]="check"></app-places>
